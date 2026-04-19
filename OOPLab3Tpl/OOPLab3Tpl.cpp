@@ -155,7 +155,7 @@ private:
     size_t size;
     STATE state;
 
-    static int objectCount;
+    static int Count;
 
 public:
 
@@ -168,7 +168,7 @@ public:
         }
         data[0] = 0;
         state = OK;
-        objectCount++;
+        Count++;
     }
 
 
@@ -182,7 +182,7 @@ public:
         for (size_t i = 0; i < size; i++)
             data[i] = 0;
         state = OK;
-        objectCount++;
+        Count++;
     }
 
 
@@ -196,7 +196,7 @@ public:
         for (size_t i = 0; i < size; i++)
             data[i] = value;
         state = OK;
-        objectCount++;
+        Count++;
     }
 
 
@@ -210,7 +210,7 @@ public:
         for (size_t i = 0; i < size; i++)
             data[i] = other.data[i];
         state = other.state;
-        objectCount++;
+        Count++;
     }
 
 
@@ -237,7 +237,7 @@ public:
 
     ~Vector() {
         delete[] data;
-        objectCount--;
+        Count--;
     }
 
 
@@ -311,7 +311,7 @@ public:
         return !equals(other);
     }
 
-    bool lessThan(const Vector& other) const {
+    bool smaler(const Vector& other) const {
         if (size != other.size) return false;
         for (size_t i = 0; i < size; i++)
             if (data[i] >= other.data[i]) return false;
@@ -324,12 +324,12 @@ public:
     }
 
 
-    static int getObjectCount() {
-        return objectCount;
+    static int getCount() {
+        return Count;
     }
 };
 
-int Vector::objectCount = 0;
+int Vector::Count = 0;
 void task2()
 {
     cout << "test const 1: 1 element = 0: " << endl;
@@ -362,12 +362,12 @@ void task2()
     cout << "test equals" << endl;
     cout << "v2 == v3: " << (v2.equals(v3) ? "true" : "false") << endl;
     cout << "v2 != v3: " << (v2.notEquals(v3) ? "true" : "false") << endl;
-    cout << "v2 < v3: " << (v2.lessThan(v3) ? "true" : "false") << endl;
+    cout << "v2 < v3: " << (v2.smaler(v3) ? "true" : "false") << endl;
     cout << "test copy" << endl;
     Vector v8 = v4;
     v8.print();
 
-    cout << "num of value =  " << Vector::getObjectCount() << endl;
+    cout << "num of value =  " << Vector::getCount() << endl;
 }
 
     int main()
